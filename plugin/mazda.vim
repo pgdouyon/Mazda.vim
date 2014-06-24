@@ -5,7 +5,7 @@
 "               buffer can then be saved back to the original file or
 "               discarded as needed.
 " Maintainer:   Pierre-Guy Douyon <pgdouyon@alum.mit.edu>
-" Version:      1.0
+" Version:      0.3
 " Last Change:  2014-06-23
 " License:      MIT <../LICENSE>
 " ======================================================================
