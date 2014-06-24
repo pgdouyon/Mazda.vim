@@ -18,10 +18,18 @@ let g:loaded_mazda = 1
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
+
+" ======================================================================
+" Global State
+" ======================================================================
 let s:mazda_buf_id = 0
 let s:last_region_start = 0
 let s:last_region_end = 0
 
+
+" ======================================================================
+" Configuration and Defaults
+" ======================================================================
 if !exists("g:mazda_zoom_out_on_write")
     let g:mazda_zoom_out_on_write = 1
 endif
@@ -30,6 +38,10 @@ if !exists("g:mazda_default_mappings")
     let g:mazda_default_mappings = 1
 endif
 
+
+" ======================================================================
+" Plugin Code
+" ======================================================================
 function! s:ZoomZoom(mode)
     if a:mode ==# "v"
         let zoom_text = getline("'<", "'>")
