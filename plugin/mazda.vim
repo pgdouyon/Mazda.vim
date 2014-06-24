@@ -23,7 +23,7 @@ let s:last_region_start = 0
 let s:last_region_end = 0
 
 if !exists("g:mazda_zoom_out_on_write")
-    let g:mazda_zoom_out_on_write = 0
+    let g:mazda_zoom_out_on_write = 1
 endif
 
 function! s:ZoomZoom(mode)
