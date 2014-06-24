@@ -123,6 +123,7 @@ nnoremap <Plug>MazdaReselect :<C-U>call <SID>ReselectLastRegion()<CR>
 
 if exists("g:mazda_default_mappings") && g:mazda_default_mappings
     nmap gz <Plug>MazdaToggle
+    vmap gz <Plug>MazdaToggle
 endif
 
 let &cpoptions = s:save_cpo
