@@ -39,7 +39,7 @@ function! s:ZoomZoom(mode)
     let s:last_region_start = b:mazda_start
     let s:last_region_end = b:mazda_end
     call s:OpenZoomBuffer(&filetype)
-    call append(0, zoom_text)
+    call setline(1, zoom_text)
 endfunction
 
 
@@ -106,7 +106,7 @@ function! s:ReselectLastRegion()
         let b:mazda_start = s:last_region_start
         let b:mazda_end = s:last_region_end
         call s:OpenZoomBuffer(&filetype)
-        call append(0, zoom_text)
+        call setline(1, zoom_text)
     endif
 endfunction
 
