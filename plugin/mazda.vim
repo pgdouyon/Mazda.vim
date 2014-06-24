@@ -56,7 +56,7 @@ function! s:OpenZoomBuffer(filetype)
 endfunction
 
 
-function! s:NoZoomZoom(writeback, jumpback)
+function! s:NoZoomZoom(writeback, zoom_out)
     let zoom_buf = bufname("%")
     let zoom_text = getline(1, "$")
     let origin = b:mazda_origin
@@ -66,7 +66,7 @@ function! s:NoZoomZoom(writeback, jumpback)
     if a:writeback
         call s:WriteZoomText(zoom_text)
     endif
-    if a:jumpback
+    if a:zoom_out
         execute "bdelete! " . zoom_buf
     else
         execute "keepjumps buffer " . zoom_buf
