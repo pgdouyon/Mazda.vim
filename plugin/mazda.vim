@@ -96,14 +96,19 @@ function! s:ZoomToggle(mode)
 endfunction
 
 
-nmap <Plug>MazdaZoomIn :set opfunc=<SID>ZoomZoom<CR>g@
-vmap <Plug>MazdaZoomIn :<C-U>call <SID>ZoomZoom("v")<CR>
+nnoremap <Plug>MazdaZoomIn :set opfunc=<SID>ZoomZoom<CR>g@
+vnoremap <Plug>MazdaZoomIn :<C-U>call <SID>ZoomZoom("v")<CR>
 
-nmap <Plug>MazdaToggle :<C-U>call <SID>ZoomToggle("n")<CR>
-vmap <Plug>MazdaToggle :<C-U>call <SID>ZoomToggle("v")<CR>
+nnoremap <Plug>MazdaToggle :<C-U>call <SID>ZoomToggle("n")<CR>
+vnoremap <Plug>MazdaToggle :<C-U>call <SID>ZoomToggle("v")<CR>
 
-nmap <Plug>MazdaZoomOut :<C-U>call <SID>NoZoomZoom(1, 1)<CR>
-nmap <Plug>MazdaDiscard :<C-U>call <SID>NoZoomZoom(0, 1)<CR>
+nnoremap <Plug>MazdaZoomOut :<C-U>call <SID>NoZoomZoom(1, 1)<CR>
+nnoremap <Plug>MazdaDiscard :<C-U>call <SID>NoZoomZoom(0, 1)<CR>
+
+
+if exists("g:mazda_default_mappings") && g:mazda_default_mappings
+    nmap gz <Plug>MazdaToggle
+endif
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
