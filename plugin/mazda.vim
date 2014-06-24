@@ -19,6 +19,8 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 let s:mazda_buf_id = 0
+let s:last_region_start = 0
+let s:last_region_end = 0
 
 if !exists("g:mazda_zoom_out_on_write")
     let g:mazda_zoom_out_on_write = 0
@@ -34,6 +36,8 @@ function! s:ZoomZoom(mode)
         let b:mazda_start = line("'[")
         let b:mazda_end = line("']")
     endif
+    let s:last_region_start = b:mazda_start
+    let s:last_region_end = b:mazda_end
     call s:OpenZoomBuffer(&filetype)
     call append(0, zoom_text)
 endfunction
@@ -96,6 +100,16 @@ function! s:ZoomToggle(mode)
 endfunction
 
 
+function! s:ReselectLastRegion()
+    if s:last_region_start && s:last_region_end
+        let zoom_text = getline(s:last_region_start, s:last_region_end)
+        let b:mazda_start = s:last_region_start
+        let b:mazda_end = s:last_region_end
+        call s:OpenZoomBuffer(&filetype)
+        call append(0, zoom_text)
+    endif
+endfunction
+
 nnoremap <Plug>MazdaZoomIn :set opfunc=<SID>ZoomZoom<CR>g@
 vnoremap <Plug>MazdaZoomIn :<C-U>call <SID>ZoomZoom("v")<CR>
 
@@ -104,6 +118,7 @@ vnoremap <Plug>MazdaToggle :<C-U>call <SID>ZoomToggle("v")<CR>
 
 nnoremap <Plug>MazdaZoomOut :<C-U>call <SID>NoZoomZoom(1, 1)<CR>
 nnoremap <Plug>MazdaDiscard :<C-U>call <SID>NoZoomZoom(0, 1)<CR>
+nnoremap <Plug>MazdaReselect :<C-U>call <SID>ReselectLastRegion()<CR>
 
 
 if exists("g:mazda_default_mappings") && g:mazda_default_mappings
