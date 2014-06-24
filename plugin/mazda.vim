@@ -44,7 +44,7 @@ function! s:OpenZoomBuffer(filetype)
     let origin = bufname("%")
     " preserve alternate buffer and jumplist
     keepjumps buffer #
-    keepjumps enew
+    enew
     execute "file! .__Mazda__." . s:mazda_buf_id
     execute "set filetype=" . a:filetype
     setlocal bufhidden=hide
@@ -62,7 +62,7 @@ function! s:NoZoomZoom(writeback, zoom_out)
     let origin = b:mazda_origin
     " preserve alternate buffer and jumplist
     keepjumps buffer #
-    execute "keepjumps buffer " . origin
+    execute "buffer " . origin
     if a:writeback
         call s:WriteZoomText(zoom_text)
     endif
