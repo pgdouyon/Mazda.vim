@@ -7,7 +7,7 @@
 " Maintainer:   Pierre-Guy Douyon <pgdouyon@alum.mit.edu>
 " Version:      1.0
 " Last Change:  2014-06-23
-" License:      MIT <../LICENSE.md>
+" License:      MIT <../LICENSE>
 " ======================================================================
 
 if exists("g:loaded_mazda")
@@ -90,7 +90,7 @@ function! s:ZoomToggle(mode)
             set opfunc="s:ZoomZoom"
             normal! g@
         else
-            call s:ZoomZoom(visualmode())
+            call s:ZoomZoom("v")
         endif
     endif
 endfunction
