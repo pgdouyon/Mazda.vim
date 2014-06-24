@@ -26,6 +26,10 @@ if !exists("g:mazda_zoom_out_on_write")
     let g:mazda_zoom_out_on_write = 1
 endif
 
+if !exists("g:mazda_default_mappings")
+    let g:mazda_default_mappings = 1
+endif
+
 function! s:ZoomZoom(mode)
     if a:mode ==# "v"
         let zoom_text = getline("'<", "'>")
@@ -121,7 +125,7 @@ nnoremap <Plug>MazdaDiscard :<C-U>call <SID>NoZoomZoom(0, 1)<CR>
 nnoremap <Plug>MazdaReselect :<C-U>call <SID>ReselectLastRegion()<CR>
 
 
-if exists("g:mazda_default_mappings") && g:mazda_default_mappings
+if g:mazda_default_mappings
     nmap gz <Plug>MazdaToggle
     vmap gz <Plug>MazdaToggle
 endif
