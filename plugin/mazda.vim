@@ -25,6 +25,7 @@ set cpoptions&vim
 let s:mazda_buf_id = 0
 let s:last_region_start = 0
 let s:last_region_end = 0
+let s:last_region_buffer = ""
 
 
 " ======================================================================
@@ -54,6 +55,7 @@ function! s:ZoomZoom(mode)
     endif
     let s:last_region_start = b:mazda_start
     let s:last_region_end = b:mazda_end
+    let s:last_region_buffer = bufname("%")
     call s:OpenZoomBuffer(&filetype)
     call setline(1, zoom_text)
 endfunction
@@ -80,6 +82,10 @@ function! s:NoZoomZoom(writeback, zoom_out)
     let zoom_buf = bufname("%")
     let zoom_text = getline(1, "$")
     let origin = b:mazda_origin
+    if origin ==# s:last_region_buffer
+        let zoom_range = len(zoom_text)
+        let s:last_region_end = s:last_region_start + zoom_range - 1
+    endif
     " preserve alternate buffer and jumplist
     keepjumps buffer #
     execute "buffer " . origin
@@ -118,6 +124,7 @@ endfunction
 
 function! s:ReselectLastRegion()
     if s:last_region_start && s:last_region_end
+        execute "keepjumps buffer " . s:last_region_buffer
         let zoom_text = getline(s:last_region_start, s:last_region_end)
         let b:mazda_start = s:last_region_start
         let b:mazda_end = s:last_region_end
