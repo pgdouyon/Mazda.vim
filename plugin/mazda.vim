@@ -108,7 +108,7 @@ function! s:ZoomToggle(mode)
     if bufname("%") =~# "__Mazda__"
         call s:NoZoomZoom(1, 1)
     else
-        if a:mode = "n"
+        if a:mode ==? "n"
             set opfunc="s:ZoomZoom"
             normal! g@
         else
