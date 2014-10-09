@@ -33,13 +33,13 @@ Mazda creates several `<Plug>` mappings for zooming in and out of a region.
 an explanation of the functionality and suggested mappings for each.
 
 If you don't want to bother with all of these different `<Plug>` mappings, you
-can just use `<Plug>MazdaToggle` which will zoom in on a region of text and open
-it in a zoom buffer, and when used in the zoom buffer will write the changes
-back to the original buffer and return you back to it.
+can just use `<Plug>MazdaToggle` which will zoom in on a region of text and
+open it in a zoom buffer, and when used in the zoom buffer will write the
+changes back to the original buffer and return you back to it.  It's an
+operator when used outside of a zoom buffer (i.e. when zooming in) and a
+regular command otherwise.  This duality may be a terrible idea, we'll see what
+happens...
 
-By default `<Plug>MazdaToggle` is mapped to gz.  It's an operator when used
-outside of a zoom buffer (i.e. when zooming in) and a regular command otherwise.
-This duality may be a terrible idea, we'll see what happens...
 
 ###<Plug> Mappings
 
@@ -72,16 +72,12 @@ selected region.
 Configuration
 -------------
 
-If you want to remove the default mapping of gz for `<Plug>MazdaToggle` put the following line in your vimrc
+By default (for now), Mazda does not zoom out and return to the original buffer
+when the zoom buffer is written.  To change this behavior use the following
+setting
 
 ```vim
-let g:mazda_default_mappings = 0
-```
-By default (for now), Mazda zooms out and returns to the original buffer when
-the zoom buffer is written.  To change this behavior use the following setting
-
-```vim
-let g:mazda_zoom_out_on_write = 0
+let g:mazda_zoom_out_on_write = 1
 ```
 
 

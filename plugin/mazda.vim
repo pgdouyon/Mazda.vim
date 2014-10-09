@@ -35,11 +35,6 @@ if !exists("g:mazda_zoom_out_on_write")
     let g:mazda_zoom_out_on_write = 0
 endif
 
-if !exists("g:mazda_default_mappings")
-    let g:mazda_default_mappings = 1
-endif
-
-
 " ======================================================================
 " Plugin Code
 " ======================================================================
@@ -139,11 +134,6 @@ nnoremap <Plug>MazdaZoomOut :<C-U>call <SID>NoZoomZoom(1, 1)<CR>
 nnoremap <Plug>MazdaDiscard :<C-U>call <SID>NoZoomZoom(0, 1)<CR>
 nnoremap <Plug>MazdaReselect :<C-U>call <SID>ReselectLastRegion()<CR>
 
-
-if g:mazda_default_mappings
-    nmap gz <Plug>MazdaToggle
-    vmap gz <Plug>MazdaToggle
-endif
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
